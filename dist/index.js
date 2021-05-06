@@ -1,37 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 932:
-/***/ ((module, __webpack_exports__, __nccwpck_require__) => {
-
-"use strict";
-__nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__) => {
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(186);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(438);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(747);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(622);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.env.GITHUB_TOKEN);
-const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", res.data.name);
-const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(path__WEBPACK_IMPORTED_MODULE_3__.join(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./", "package.json"), "utf8");
-const j = JSON.parse(fileData);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", res.data.name == j.version ? 0 : 1);
-
-__webpack_handle_async_dependencies__();
-}, 1);
-
-/***/ }),
-
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -3408,7 +3377,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var deprecation = __nccwpck_require__(481);
+var deprecation = __nccwpck_require__(932);
 var once = _interopDefault(__nccwpck_require__(223));
 
 const logOnce = once(deprecation => console.warn(deprecation));
@@ -3796,7 +3765,7 @@ function removeHook(state, name, method) {
 
 /***/ }),
 
-/***/ 481:
+/***/ 932:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5922,6 +5891,37 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 177:
+/***/ ((module, __webpack_exports__, __nccwpck_require__) => {
+
+"use strict";
+__nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__) => {
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(186);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(438);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(747);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(622);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.env.GITHUB_TOKEN);
+const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", res.data.name);
+const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(path__WEBPACK_IMPORTED_MODULE_3__.join(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./", "package.json"), "utf8");
+const j = JSON.parse(fileData);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", res.data.name == j.version ? 0 : 1);
+
+__webpack_handle_async_dependencies__();
+}, 1);
+
+/***/ }),
+
 /***/ 877:
 /***/ ((module) => {
 
@@ -6184,7 +6184,7 @@ module.exports = require("zlib");;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module used 'module' so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(932);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(177);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
