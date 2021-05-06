@@ -1,0 +1,12 @@
+name: 'checkversion'
+description: 'Greet someone and record the time'
+outputs:
+  last:
+    description: 'last version'
+  current:
+    description: 'current version'
+  change:
+    description: 'if version change'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
