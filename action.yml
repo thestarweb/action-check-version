@@ -1,5 +1,10 @@
 name: 'checkversion'
 description: 'Greet someone and record the time'
+inputs:
+  path:  # id of input
+    description: 'path'
+    required: false
+    default: './'
 outputs:
   last:
     description: 'last version'
