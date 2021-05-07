@@ -5913,8 +5913,9 @@ const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.
 const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", res.data.name);
 const package_patch = __nccwpck_require__.ab + "check-version/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(path__WEBPACK_IMPORTED_MODULE_3__.dirname(package_patch));
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("files:");
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(package_patch);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(process.cwd());
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(path__WEBPACK_IMPORTED_MODULE_3__.resolve("./"));
 fs__WEBPACK_IMPORTED_MODULE_2__.readdir(path__WEBPACK_IMPORTED_MODULE_3__.dirname(package_patch), (error, files) => {
     if (error) {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(error.message);
