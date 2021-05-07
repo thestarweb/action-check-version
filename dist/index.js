@@ -5913,10 +5913,15 @@ const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.
 const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", res.data.name);
 const package_patch = __nccwpck_require__.ab + "check-version/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(package_patch);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(path__WEBPACK_IMPORTED_MODULE_3__.dirname(package_patch));
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("files:");
 fs__WEBPACK_IMPORTED_MODULE_2__.readdir(path__WEBPACK_IMPORTED_MODULE_3__.dirname(package_patch), (error, files) => {
-    files.forEach(f => _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(f));
+    if (error) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(error.message);
+    }
+    else {
+        files.forEach(f => _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(f));
+    }
 });
 try {
     const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");

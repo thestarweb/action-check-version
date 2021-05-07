@@ -9,10 +9,14 @@ const octokit = github.getOctokit(process.env.GITHUB_TOKEN as string);
 const res = await octokit.repos.getLatestRelease(github.context.repo);
 core.setOutput("last", res.data.name);
 const package_patch = path.resolve(core.getInput('path')||"./", "package.json");
-core.info(package_patch);
+core.info(path.dirname(package_patch));
 core.info("files:");
 fs.readdir(path.dirname(package_patch),(error,files)=>{
-	files.forEach(f=>core.info(f))
+	if(error){
+		core.info(error.message);
+	}else{
+		files.forEach(f=>core.info(f))
+	}
 });
 try{
 	const fileData = fs.readFileSync(package_patch, "utf8");
