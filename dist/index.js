@@ -5910,28 +5910,19 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.env.GITHUB_TOKEN);
-let last = "";
-try {
-    //
-    //octokit.repos.getRelease()
-    const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
-    last = res.data.tag_name;
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", last);
-}
-catch (e) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", "");
-}
-const package_patch = path__WEBPACK_IMPORTED_MODULE_3__.resolve('./', "ui/package.js"); //path.join(path.resolve('./'),"package.json");
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("get path is " + package_patch);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("process.cwd():" + process.cwd());
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("./:" + path__WEBPACK_IMPORTED_MODULE_3__.resolve('./'));
+const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", res.data.name);
+const package_patch = __nccwpck_require__.ab + "check-version/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info(package_patch);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("files:");
+fs__WEBPACK_IMPORTED_MODULE_2__.readdir(path__WEBPACK_IMPORTED_MODULE_3__.dirname(package_patch), (error, files) => {
+    files.forEach(f => _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(f));
+});
 try {
     const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");
-    // const fileData = fs.readFileSync(core.getInput('path',{ required: true }), "utf8");
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(fileData);
     const j = JSON.parse(fileData);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", last == j.version ? 0 : 1);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", res.data.name == j.version ? 0 : 1);
 }
 catch (e) { }
 
