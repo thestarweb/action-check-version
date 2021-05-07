@@ -5923,6 +5923,12 @@ catch (e) {
 }
 const package_patch = __nccwpck_require__.ab + "action-check-version-main/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("get path is " + package_patch);
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.info("files:");
+fs__WEBPACK_IMPORTED_MODULE_2__.readdir("./", (err, files) => {
+    files.map((f) => {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(f);
+    });
+});
 try {
     const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");
     const j = JSON.parse(fileData);
