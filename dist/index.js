@@ -5921,13 +5921,14 @@ try {
 catch (e) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", "");
 }
-const package_patch = __nccwpck_require__.ab + "action-check-version-main/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
+const package_patch = path__WEBPACK_IMPORTED_MODULE_3__.resolve('./', "ui/package.js"); //path.join(path.resolve('./'),"package.json");
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("get path is " + package_patch);
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("process.cwd():" + process.cwd());
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("./:" + path__WEBPACK_IMPORTED_MODULE_3__.resolve('./'));
 try {
-    // const fileData = fs.readFileSync(package_patch, "utf8");
-    const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path', { required: true }), "utf8");
+    const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");
+    // const fileData = fs.readFileSync(core.getInput('path',{ required: true }), "utf8");
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(fileData);
     const j = JSON.parse(fileData);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", last == j.version ? 0 : 1);
