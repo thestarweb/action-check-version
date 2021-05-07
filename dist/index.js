@@ -5921,7 +5921,7 @@ try {
 catch (e) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", "");
 }
-const package_patch = "./" + path__WEBPACK_IMPORTED_MODULE_3__.join(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./", "package.json");
+const package_patch = __nccwpck_require__.ab + "action-check-version-main/" + _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./" + '//package.json';
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("get path is " + package_patch);
 try {
     const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");
