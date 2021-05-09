@@ -5912,21 +5912,22 @@ __nccwpck_require__.r(__webpack_exports__);
 const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(process.env.GITHUB_TOKEN);
 let last = "";
 try {
-    //
-    //octokit.repos.getRelease()
     const res = await octokit.repos.getLatestRelease(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo);
     last = res.data.tag_name;
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", last);
 }
 catch (e) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("last", "");
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.error(e);
 }
-const package_patch = path__WEBPACK_IMPORTED_MODULE_3__.join(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path') || "./", "package.json");
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.debug("get path is " + package_patch);
-const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(package_patch, "utf8");
-const j = JSON.parse(fileData);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", last == j.version ? 0 : 1);
+try {
+    const fileData = fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync(path__WEBPACK_IMPORTED_MODULE_3__.join(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('path'), "package.json"), "utf8");
+    const j = JSON.parse(fileData);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("current", j.version);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("change", last == j.version ? 0 : 1);
+}
+catch (e) {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.error(e);
+}
 
 __webpack_handle_async_dependencies__();
 }, 1);
