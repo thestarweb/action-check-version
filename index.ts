@@ -8,7 +8,7 @@ const octokit = github.getOctokit(process.env.GITHUB_TOKEN as string);
 
 const res = await octokit.repos.getLatestRelease(github.context.repo);
 core.setOutput("last", res.data.name);
-const package_patch = path.resolve("./",core.getInput('path')||"./", "package.json");
+const package_patch = path.join(core.getInput("path"), "package.json");
 core.info(package_patch);
 core.info(process.cwd());
 core.info(path.resolve("./"));
